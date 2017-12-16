@@ -68,15 +68,15 @@
 
                 <pre>
                     <code>
-&lt;swiper&gt;
-    &lt;slides&gt;
-        &lt;slide&gt;Slide1&lt;/slide&gt;
-        &lt;slide&gt;Slide2&lt;/slide&gt;
-    &lt;/slides&gt;
-    &lt;prev&gt;&lt;/prev&gt;
-    &lt;next&gt;&lt;/next&gt;
-    &lt;pagination&gt;&lt;/pagination&gt;
-&lt;/swiper&gt;
+&lt;ui-swiper&gt;
+    &lt;ui-swiper-slides&gt;
+        &lt;ui-swiper-slide&gt;Slide1&lt;/ui-swiper-slide&gt;
+        &lt;ui-swiper-slide&gt;Slide2&lt;/ui-swiper-slide&gt;
+    &lt;/ui-swiper-slides&gt;
+    &lt;ui-swiper-prev&gt;&lt;/ui-swiper-prev&gt;
+    &lt;ui-swiper-next&gt;&lt;/ui-swiper-next&gt;
+    &lt;ui-swiper-pagination&gt;&lt;/ui-swiper-pagination&gt;
+&lt;/ui-swiper-&gt;
                     </code>
                 </pre>
 
@@ -270,15 +270,15 @@ $scope.instance.slideTo(index, 300);
 ...
 &lt;/script&gt;
 
-&lt;swiper instance="instance"&gt;
-    &lt;slides&gt;
-      &lt;slide&gt;Slide1&lt;/slide&gt;
-      &lt;slide&gt;Slide2&lt;/slide&gt;
-    &lt;/slides&gt;
-    &lt;prev&gt;&lt;/prev&gt;
-    &lt;next&gt;&lt;/next&gt;
-    &lt;pagination&gt;&lt;/pagination&gt;
-&lt;/swiper&gt;
+&lt;ui-swiper instance="instance"&gt;
+    &lt;ui-swiper-slides&gt;
+      &lt;ui-swiper-slide&gt;Slide1&lt;/ui-swiper-slide&gt;
+      &lt;ui-swiper-slide&gt;Slide2&lt;/ui-swiper-slide&gt;
+    &lt;/ui-swiper-slides&gt;
+    &lt;ui-swiper-prev&gt;&lt;/ui-swiper-prev&gt;
+    &lt;ui-swiper-next&gt;&lt;/ui-swiper-next&gt;
+    &lt;ui-swiper-pagination&gt;&lt;/ui-swiper-pagination&gt;
+&lt;/ui-swiper-&gt;
 
 &lt;button ng-click="setSlide(1);"&lt;Go to Slide 2&lt;/button>;
                     </code></pre>
