@@ -1,0 +1,44 @@
+{
+  "dependencies": {
+    "main.js": {
+      "files": [
+        "scripts/main.js"
+      ],
+      "main": true
+    },
+    "main.css": {
+      "files": "styles/main.scss",
+      "main": true
+    },
+    "foundation.css": {
+      "files": "styles/foundation.scss",
+      "main": true,
+      "bower": ["foundation-sites"]
+    },
+    "motion-ui.js": {
+      "bower": ["motion-ui"]
+    },
+    "motion-ui.css": {
+      "bower": ["motion-ui"]
+    },
+    "angular-foundation-6.js": {
+      "bower": ["angular-foundation-6"]
+    },
+    "angular.js": {
+      "bower": [
+        "angular",
+        "angular-touch",
+        "angular-animate"
+      ]
+    },
+    "jquery.js": {
+      "bower": ["jquery"]
+    },
+    "es6-shim.js": {
+      "bower": ["es6-shim"]
+    }
+  },
+  "config": {
+    "devUrl": "http://localhost/projects/RedCastor/lib-github/ui-swiper/demo"
+  }
+}

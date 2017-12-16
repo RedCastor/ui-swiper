@@ -1,0 +1,43 @@
+{
+  "name": "demo-ui-swiper",
+  "homepage": "https://redcastor.github.io/ui-swiper/demo/",
+  "version": "2.4.0",
+  "author": "Auban le Grelle <auban@viamonkey.com>",
+  "description": "",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "jquery": "~2.2.4",
+    "angular": "~1.6.4",
+    "angular-touch": "~1.6.4",
+    "angular-animate": "~1.6.4",
+    "angular-foundation-6": "^0.11.5",
+    "angular-json-pretty": "^1.0.0",
+    "foundation-sites": "^6.3.1",
+    "motion-ui": "^1.2.2",
+    "font-awesome": "^4.7.0",
+    "es6-shim": "^0.35.3"
+  },
+  "resolutions": {
+    "jquery": "~2.2.4",
+    "angular": "~1.6.4"
+  },
+  "overrides": {
+    "font-awesome": {
+      "main": [
+        "./scss/font-awesome.scss",
+        "./fonts/*"
+      ]
+    },
+    "foundation-sites": {
+      "main": [
+        "dist/css/foundation.css"
+      ]
+    },
+    "motion-ui": {
+      "main": [
+        "dist/motion-ui.js"
+      ]
+    }
+  }
+}

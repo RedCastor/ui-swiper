@@ -1,0 +1,113 @@
+
+
+
+// Icon font path for bootstrap or foundation
+$icon-font-path:        "../fonts/";
+
+// Grid settings
+$main-columns:       12;
+$sidebar-columns:    4;
+
+
+//Colors Palettes
+$primary-base:           darken(#428bca, 6.5%) !default; // #337ab7
+$secondary-base:         darken(#428bca, 26%) !default; // #337ab7
+$success-base:           #5cb85c !default;
+$info-base:              #5bc0de !default;
+$warning-base:           #f0ad4e !default;
+$danger-base:            #cb0234 !default;
+
+$light-gray-base:        #e6e6e6 !default;
+$medium-gray-base:       #cacaca !default;
+$dark-gray-base:         #7c7c7c !default;
+$gray-base:              #4b4b4b !default;
+$black-base:             #0a0a0a !default;
+$white-base:             #fefefe !default;
+
+
+//== Typography
+//** Google Font
+$font-name-google:            "Lato";
+$font-family-google:          $font-name-google, sans-serif !default;
+$google-font-size:            15px;
+
+//** TypeKit Font
+$font-name-typekit:            "tk-adobe-caslon-pro";
+$font-family-typekit:          $font-name-typekit, serif !default;
+$typekit-font-size:            15px;
+
+//** First Font (Regular)
+$font-path-first:            "../fonts/";
+$font-filename-first:        "xx-webfont";
+$font-name-first:            $font-name-google;
+$font-family-first:          $font-name-first;
+$first-font-size:            15px;
+
+//** Second Font (Light Regular)
+$font-path-second:            "../fonts/";
+$font-filename-second:        "xx-webfont";
+$font-name-second:            $font-name-google;
+$font-family-second:          $font-name-second;
+$second-font-size:            15px;
+
+//** Third Font (Medium Regular)
+$font-path-third:            "../fonts/";
+$font-filename-third:        "xx-webfont";
+$font-name-third:            $font-name-google;
+$font-family-third:          $font-name-third;
+$third-font-size:            15px;
+
+//** Fourth Font
+$font-path-fourth:            "../fonts/";
+$font-filename-fourth:        "xx-webfont";
+$font-name-fourth:            $font-name-google;
+$font-family-fourth:          $font-name-fourth;
+$fourth-font-size:            15px;
+
+
+
+
+//** Monospace Font
+$font-family-monospace:       Menlo, Monaco, Consolas, "Courier New", monospace !default;
+$monospace-font-size:         15px;
+
+//** Text Font
+$font-family-text:            $font-family-first;
+$text-font-size:              15px;
+
+//** Title Font
+$font-family-title:           $font-family-fourth;
+$title-font-size:              15px;
+
+
+
+//== Iconography
+//** Glyphicons and Awesome font path
+$icon-font-path:              "../fonts/";
+
+//** Awesome font
+$awesome-font-name:           "fontawesome-webfont";
+$awesome-font-family:         "FontAwesome";
+
+//** Font Icons font
+$global-icon-font-name:       "sage-webfont";
+$global-icon-font-family:     "IconSage";
+
+
+//== Images
+$img-path:                    "../images/";
+
+
+
+//==Header
+$header-heading-color: #fff;
+$header-bg-color: #159957;
+$header-bg-color-secondary: #155799;
+
+
+//==Motion UI
+$motion-ui-classes: (
+  chain: true,
+  prefix: 'ng-',
+  active: '-active',
+);

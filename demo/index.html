@@ -1,0 +1,362 @@
+<!doctype html>
+<html class="no-js" lang="en-US">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Angular Directive Fork of angular-ui-swiper.</title>
+
+    <link type="text/css" rel="stylesheet" href="dist/styles/foundation.css"/>
+    <link type="text/css" rel="stylesheet" href="../dist/angular-ui-swiper.css"/>
+    <link type="text/css" rel="stylesheet" href="dist/styles/main.css"/>
+
+    <script type="text/javascript" src="dist/scripts/es6-shim.js"></script>
+    <script type="text/javascript" src="dist/scripts/jquery.js"></script>
+    <script type="text/javascript" src="dist/scripts/angular.js"></script>
+    <script type="text/javascript" src="dist/scripts/angular-foundation-6.js"></script>
+
+    <script type="text/javascript" src="../dist/angular-ui-swiper.js"></script>
+    <script type="text/javascript" src="dist/scripts/main.js"></script>
+</head>
+
+<body data-ng-app="app" >
+<!--[if lt IE 9]>
+<div class="alert alert-warning browserupgrade">
+    You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.
+</div>
+<![endif]-->
+
+<header class="container-fluid header-main">
+    <div class="row">
+        <div class="small-12">
+            <div class="text-center">
+                <h1 class="page-header">ui.swiper</h1>
+                <h3>Angular Directive Fork of angular-ui-swiper.</h3>
+                <a class="button large hollow default" href="https://github.com/RedCastor/ui-swiper"><i class="fa fa-github"></i>&nbsp;&nbsp;View on GitHub</a>
+                <a class="button large hollow default" href="https://github.com/RedCastor/ui-swiper/releases"><i class="fa fa-download"></i>&nbsp;&nbsp;Download</a>
+                <h5 class="version"><small>Currently v2.4.0</small></h5>
+            </div>
+        </div>
+    </div>
+</header>
+<main>
+    <div data-ng-controller="mainCtrl">
+        <br>
+        <section class="row">
+            <div class="small-12 columns">
+                <p>This is an angular implementation of <a href="http://idangero.us/swiper/get-started/">http://idangero.us/swiper/get-started/</a>
+                    This requires no dependencies and written entirely in angular! ( That means no swiper install or jquery install necessary )
+                </p>
+
+                <h2><a id="install" class="anchor" href="#install" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Install</h2>
+
+                <p><code>bower install --save https://github.com/RedCastor/ui-swiper.git#2.4.0</code>
+
+                <h2><a id="add-files" class="anchor" href="#add-files" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Add files</h2>
+
+                <pre>
+                    <code>
+&lt;link rel="stylesheet" href="bower_components/angular-ui-swiper/dist/angular-ui-swiper.css"/&gt;
+&lt;script src="bower_components/angular-ui-swiper/dist/angular-ui-swiper.js"&gt;&lt;/script&gt;
+                    </code>
+                </pre>
+
+                <h2><a id="usage" class="anchor" href="#usage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Usage</h2>
+
+                <p>Add the module dependency to your project<code>angular.module('app', ['ui.swiper']);</code></p>
+
+                <p>Sample Usage :</p>
+
+                <pre>
+                    <code>
+&lt;swiper&gt;
+    &lt;slides&gt;
+        &lt;slide&gt;Slide1&lt;/slide&gt;
+        &lt;slide&gt;Slide2&lt;/slide&gt;
+    &lt;/slides&gt;
+    &lt;prev&gt;&lt;/prev&gt;
+    &lt;next&gt;&lt;/next&gt;
+    &lt;pagination&gt;&lt;/pagination&gt;
+&lt;/swiper&gt;
+                    </code>
+                </pre>
+
+                <p>See here you added a swiper with pagination and directional buttons.Within the slide tag you can put <strong>whatever html you want to put in there!</strong></p>
+            </div>
+        </section>
+
+        <!-- Demo styles -->
+        <style>
+            .swipe {
+                background: #eee;
+                width: 100%;
+                margin: 0 auto;
+                height: 340px;
+                padding: 20px;
+            }
+            .swiper-container {
+                width: auto;
+                height: 300px;
+            }
+            .swiper-slide {
+                text-align: center;
+                font-size: 18px;
+                background: #fff;
+                /* Center slide text vertically */
+                display: -webkit-box;
+                display: -ms-flexbox;
+                display: -webkit-flex;
+                display: flex;
+                -webkit-box-pack: center;
+                -ms-flex-pack: center;
+                -webkit-justify-content: center;
+                justify-content: center;
+                -webkit-box-align: center;
+                -ms-flex-align: center;
+                -webkit-align-items: center;
+                align-items: center;
+            }
+        </style>
+        <section class="row">
+            <div class="small-12 columns">
+                <header>
+                    <h4>Default Setup</h4>
+                </header>
+                <div class="swipe">
+                    <ui-swiper>
+                        <ui-swiper-slides>
+                            <ui-swiper-slide>Slide 1</ui-swiper-slide>
+                            <ui-swiper-slide>Slide 2</ui-swiper-slide>
+                            <ui-swiper-slide>Slide 3</ui-swiper-slide>
+                            <ui-swiper-slide>Slide 4</ui-swiper-slide>
+                            <ui-swiper-slide>Slide 5</ui-swiper-slide>
+                            <ui-swiper-slide>Slide 6</ui-swiper-slide>
+                            <ui-swiper-slide>Slide 7</ui-swiper-slide>
+                            <ui-swiper-slide>Slide 8</ui-swiper-slide>
+                            <ui-swiper-slide>Slide 9</ui-swiper-slide>
+                        </ui-swiper-slides>
+                    </ui-swiper>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="row">
+            <div class="small-12 columns">
+                <header>
+                    <h4>Paging</h4>
+                </header>
+                <div class="swipe" >
+                    <ui-swiper>
+                        <ui-swiper-slides>
+                            <ui-swiper-slide>Slide 1</ui-swiper-slide>
+                            <ui-swiper-slide>Slide 2</ui-swiper-slide>
+                            <ui-swiper-slide>Slide 3</ui-swiper-slide>
+                            <ui-swiper-slide>Slide 4</ui-swiper-slide>
+                            <ui-swiper-slide>Slide 5</ui-swiper-slide>
+                            <ui-swiper-slide>Slide 6</ui-swiper-slide>
+                            <ui-swiper-slide>Slide 7</ui-swiper-slide>
+                            <ui-swiper-slide>Slide 8</ui-swiper-slide>
+                            <ui-swiper-slide>Slide 9</ui-swiper-slide>
+                        </ui-swiper-slides>
+                        <ui-swiper-pagination></ui-swiper-pagination>
+                    </ui-swiper>
+                </div>
+            </div>
+        </section>
+
+        <section class="row">
+            <div class="small-12 columns">
+                <header>
+                    <h4>Paging and navigation</h4>
+                </header>
+                <div class="swipe">
+                    <ui-swiper>
+                        <ui-swiper-slides>
+                            <ui-swiper-slide>Slide 1</ui-swiper-slide>
+                            <ui-swiper-slide>Slide 2</ui-swiper-slide>
+                            <ui-swiper-slide>Slide 3</ui-swiper-slide>
+                            <ui-swiper-slide>Slide 4</ui-swiper-slide>
+                            <ui-swiper-slide>Slide 5</ui-swiper-slide>
+                            <ui-swiper-slide>Slide 6</ui-swiper-slide>
+                            <ui-swiper-slide>Slide 7</ui-swiper-slide>
+                            <ui-swiper-slide>Slide 8</ui-swiper-slide>
+                            <ui-swiper-slide>Slide 9</ui-swiper-slide>
+                        </ui-swiper-slides>
+                        <ui-swiper-prev></ui-swiper-prev>
+                        <ui-swiper-next></ui-swiper-next>
+                        <ui-swiper-pagination></ui-swiper-pagination>
+                    </ui-swiper>
+                </div>
+            </div>
+        </section>
+
+        <section class="row">
+            <div class="small-12 columns">
+                <header>
+                    <h4>3D Cube Effect</h4>
+                </header>
+                <div class="swipe">
+                    <ui-swiper
+                            effect="cube"
+                            grab-cursor="true"
+                            cube="{shadow: true, slideShadows: true, shadowOffset: 20, shadowScale: 0.94}"
+                            style="width: 300px; height: 300px; position: absolute; left: 50%; margin-left: -150px;"
+                    >
+                        <ui-swiper-slides>
+                            <ui-swiper-slide style="background-image:url(http://lorempixel.com/600/600/nature/1)"></ui-swiper-slide>
+                            <ui-swiper-slide style="background-image:url(http://lorempixel.com/600/600/nature/2)"></ui-swiper-slide>
+                            <ui-swiper-slide style="background-image:url(http://lorempixel.com/600/600/nature/3)"></ui-swiper-slide>
+                            <ui-swiper-slide style="background-image:url(http://lorempixel.com/600/600/nature/4)"></ui-swiper-slide>
+                        </ui-swiper-slides>
+                        <ui-swiper-pagination></ui-swiper-pagination>
+                    </ui-swiper>
+                </div>
+            </div>
+        </section>
+
+        <section class="row">
+            <div class="small-12 columns">
+                <header>
+                    <h4>Events</h4>
+                </header>
+                <div class="swipe">
+                    <ui-swiper on-transition-start="onTransitionStart">
+                        <ui-swiper-slides>
+                            <ui-swiper-slide>Slide 1</ui-swiper-slide>
+                            <ui-swiper-slide>Slide 2</ui-swiper-slide>
+                            <ui-swiper-slide>Slide 3</ui-swiper-slide>
+                            <ui-swiper-slide>Slide 4</ui-swiper-slide>
+                            <ui-swiper-slide>Slide 5</ui-swiper-slide>
+                            <ui-swiper-slide>Slide 6</ui-swiper-slide>
+                            <ui-swiper-slide>Slide 7</ui-swiper-slide>
+                            <ui-swiper-slide>Slide 8</ui-swiper-slide>
+                            <ui-swiper-slide>Slide 9</ui-swiper-slide>
+                        </ui-swiper-slides>
+                        <ui-swiper-prev></ui-swiper-prev>
+                        <ui-swiper-next></ui-swiper-next>
+                        <ui-swiper-pagination></ui-swiper-pagination>
+                    </ui-swiper>
+                </div>
+            </div>
+        </section>
+
+        <section class="row">
+            <header>
+                <h4>ng-repeat</h4>
+            </header>
+            <div class="swipe">
+                <ui-swiper effect="coverflow">
+                    <ui-swiper-slides>
+                        <ui-swiper-slide ng-repeat="slide in slides">{{slide}}</ui-swiper-slide>
+                    </ui-swiper-slides>
+                    <ui-swiper-prev></ui-swiper-prev>
+                    <ui-swiper-next></ui-swiper-next>
+                    <ui-swiper-pagination></ui-swiper-pagination>
+                </ui-swiper>
+            </div>
+        </section>
+
+        <section class="row">
+            <div class="small-12 columns">
+                <header>
+                    <h4>Access the Swiper instance</h4>
+
+
+                    <pre><code>&lt;script&gt;
+...
+$scope.setSlide = function (index) {
+$scope.instance.slideTo(index, 300);
+};
+...
+&lt;/script&gt;
+
+&lt;swiper instance="instance"&gt;
+    &lt;slides&gt;
+      &lt;slide&gt;Slide1&lt;/slide&gt;
+      &lt;slide&gt;Slide2&lt;/slide&gt;
+    &lt;/slides&gt;
+    &lt;prev&gt;&lt;/prev&gt;
+    &lt;next&gt;&lt;/next&gt;
+    &lt;pagination&gt;&lt;/pagination&gt;
+&lt;/swiper&gt;
+
+&lt;button ng-click="setSlide(1);"&lt;Go to Slide 2&lt;/button>;
+                    </code></pre>
+                </header>
+                <div class="swipe">
+                    <ui-swiper instance="instance">
+                        <ui-swiper-slides>
+                            <ui-swiper-slide>Slide 1</ui-swiper-slide>
+                            <ui-swiper-slide>Slide 2</ui-swiper-slide>
+                            <ui-swiper-slide>Slide 3</ui-swiper-slide>
+                            <ui-swiper-slide>Slide 4</ui-swiper-slide>
+                            <ui-swiper-slide>Slide 5</ui-swiper-slide>
+                            <ui-swiper-slide>Slide 6</ui-swiper-slide>
+                            <ui-swiper-slide>Slide 7</ui-swiper-slide>
+                            <ui-swiper-slide>Slide 8</ui-swiper-slide>
+                            <ui-swiper-slide>Slide 9</ui-swiper-slide>
+                        </ui-swiper-slides>
+                        <ui-swiper-prev></ui-swiper-prev>
+                        <ui-swiper-next></ui-swiper-next>
+                        <ui-swiper-pagination></ui-swiper-pagination>
+                    </ui-swiper>
+                    <button ng-click="setSlide(0);">Go to Slide 1</button>
+                    <button ng-click="setSlide(1);">Go to Slide 2</button>
+                    <button ng-click="setSlide(2);">Go to Slide 3</button>
+                    <button ng-click="setSlide(3);">Go to Slide 4</button>
+                    <button ng-click="setSlide(4);">Go to Slide 5</button>
+                    <button ng-click="setSlide(5);">Go to Slide 6</button>
+                    <button ng-click="setSlide(6);">Go to Slide 7</button>
+                    <button ng-click="setSlide(7);">Go to Slide 8</button>
+                    <button ng-click="setSlide(8);">Go to Slide 9</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="row">
+            <div class="small-12 columns">
+                <header>
+                    <h4>HTML Code in each slide</h4>
+                </header>
+                <div class="swipe">
+                    <ui-swiper>
+                        <ui-swiper-slides>
+                            <ui-swiper-slide>
+                                <div>
+                                    <img src="http://lorempixel.com/500/200/nature/1">
+                                    <div>
+                                        <h3>Nature 1</h3>
+                                        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.</p>
+                                    </div>
+                                </div>
+                            </ui-swiper-slide>
+                            <ui-swiper-slide>
+                                <div>
+                                    <img src="http://lorempixel.com/500/200/nature/2">
+                                    <div>
+                                        <h3>Nature 2</h3>
+                                        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.</p>
+                                    </div>
+                                </div>
+                            </ui-swiper-slide>
+                            <ui-swiper-slide>
+                                <div>
+                                    <img src="http://lorempixel.com/500/200/nature/3">
+                                    <div>
+                                        <h3>Nature 3</h3>
+                                        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.</p>
+                                    </div>
+                                </div>
+                            </ui-swiper-slide>
+                        </ui-swiper-slides>
+                        <ui-swiper-prev></ui-swiper-prev>
+                        <ui-swiper-next></ui-swiper-next>
+                        <ui-swiper-pagination></ui-swiper-pagination>
+                    </ui-swiper>
+                </div>
+            </div>
+        </section>
+    </div>
+</main>
+</body>
+</html>

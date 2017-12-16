@@ -1,98 +1,166 @@
-'use strict';
+// ## Globals
+var autoprefixer = require('gulp-autoprefixer');
+var changed      = require('gulp-changed');
+var concat       = require('gulp-concat');
+var flatten      = require('gulp-flatten');
+var gulp         = require('gulp');
+var rename       = require('gulp-rename');
+var runSequence  = require('run-sequence');
+var gulpif       = require('gulp-if');
+var imagemin     = require('gulp-imagemin');
+var jshint       = require('gulp-jshint');
+var lazypipe     = require('lazypipe');
+var less         = require('gulp-less');
+var merge        = require('merge-stream');
+var cssNano      = require('gulp-cssnano');
+var plumber      = require('gulp-plumber');
+var rev          = require('gulp-rev');
+var sass         = require('gulp-sass');
+var sourcemaps   = require('gulp-sourcemaps');
+var stripComments = require('gulp-strip-comments');
+var stripCssComments = require('gulp-strip-css-comments');
+var uglify       = require('gulp-uglify');
+var ngAnnotate   = require('gulp-ng-annotate');
+var path         = require('path');
+var ngTemplateCache =  require('gulp-angular-templatecache');
 
-var gulp            = require ('gulp');
-var usemin          = require ('gulp-usemin');
-var sass            = require ('gulp-sass');
-var sassGlob        = require ('gulp-sass-glob');
-var ngAnnotate      = require ('gulp-ng-annotate');
-var angularFilesort = require ('gulp-angular-filesort');
-var mod_rewrite     = require ('connect-modrewrite');
-var minifyCss       = require ('gulp-cssnano');
-var uglify          = require ('gulp-uglify');
-var plumber         = require ('gulp-plumber');
-var concat          = require ('gulp-concat');
-var rename          = require ('gulp-rename');
-var gutil           = require ('gulp-util');
 
-var browserSync     = require('browser-sync').create();
-var reload          = browserSync.reload;
-var stream          = browserSync.stream;
+var currentPath = path.parse(__dirname);
 
-gulp.task ('sass', function () {
-  return  gulp.src ('./src/scss/angular-ui-swiper.scss')
-          .pipe (plumber())
-          .pipe (sassGlob())
-          .pipe (sass().on('error', sass.logError))
-          .pipe (gulp.dest('./dist/'));
-});
+var path = {
+    src: [
+        'src/scripts/swiper.module.js',
+        'src/scripts/directives/**/*.js',
+        'src/scripts/services/**/*.js'
+    ],
+    styles: 'src/styles/**/*.scss',
+    dist: 'dist',
+    scriptFilename: 'angular-' + currentPath.name + '.js',
+    styleFilename:  'angular-' + currentPath.name
+};
 
-gulp.task ('sass:production', function () {
-    return  gulp.src ('./src/scss/angular-ui-swiper.scss')
-            .pipe (rename('angular-ui-swiper.min.css'))
-            .pipe (plumber())
-            .pipe (sassGlob())
-            .pipe (sass().on('error', sass.logError))
-            .pipe (minifyCss({discardComments: {removeAll: true}}))
-            .pipe (gulp.dest('./dist/'));
-});
 
-gulp.task ('js', function () {
-  return  gulp.src ('./src/**/*.js')
-          .pipe (plumber())
-          .pipe (ngAnnotate().on('error', gutil.log))
-          .pipe (angularFilesort())
-          .pipe (concat('angular-ui-swiper.js'))
-          .pipe (gulp.dest('./dist/'));
-});
 
-gulp.task ('js:production', function () {
-    return  gulp.src ('./src/**/*.js')
-            .pipe (plumber())
-            .pipe (ngAnnotate().on('error', gutil.log))
-            .pipe (angularFilesort())
-            .pipe (concat('angular-ui-swiper.min.js'))
-            .pipe (uglify().on('error', gutil.log))
-            .pipe (gulp.dest('./dist/'));
-});
+var getExtension = function(path) {
+    var basename = path.split(/[\\/]/).pop(),  // extract file name from full path ...
+        // (supports `\\` and `/` separators)
+        pos = basename.lastIndexOf(".");       // get last position of `.`
 
-// **********************************************************************
-// **********************************************************************
-// **********************************************************************
-// RUNTIME RELATED TASKS
+    if (basename === "" || pos < 1) {
+        return "";                             //  `.` not found (-1) or comes first (0)
+    }            // if file name is empty or ...
 
-// Stop browser sync
-gulp.task('stop', function() {
-    browserSync.exit();
-});
 
-// refreshes the webpage
-gulp.task('serve', ['default'], function() {
+    return basename.slice(pos + 1);            // extract extension ignoring `.`
+};
 
-    browserSync.init({
-        port: 9000,
-        server : {
-            baseDir : '.',
-            // Make sure its getting the index.html file
-            middleware: [
-                mod_rewrite([
-                    '^/bower_components/(.*) /bower_components/$1 [L]',
-                    '^(.*)\.(gif|jpg|png|jpeg|css|js|swf|svg|woff.*|woff2.*|ttf.*)$ /$1.$2 [L,NC]',
-                    '^(.*)$ /index.html [NE,L,QSD]'
-                    //'^[^\\.]*$ /index.html [L]'
-                ])
+
+// ### CSS processing pipeline
+var cssTasks = function(src, dest, filename, min) {
+    return gulp.src(src)
+        .pipe(plumber())
+        .pipe(gulpif(!min, sourcemaps.init()) )
+        .pipe(sass({
+            outputStyle: 'nested', // libsass doesn't support expanded yet
+            precision: 10,
+            includePaths: ['.'],
+            errLogToConsole: true
+        }))
+        .pipe(concat(filename))
+        .pipe(autoprefixer( {
+            browsers: [
+                'last 2 versions',
+                'android 4',
+                'opera 12'
             ]
-        },
-        logLevel : 'debug',
-        open : true,
-        browser : 'google chrome'
-    });
+        }))
+        .pipe(gulpif(min, cssNano({ safe: true, discardComments: {removeAll: true} })) )
+        .pipe(gulpif(min, rename({ suffix: '.min' })) )
+        .pipe(stripCssComments())
+        .pipe(gulpif(!min, sourcemaps.write('.', { sourceRoot: 'styles/' })) )
+        .pipe(gulp.dest(dest));
+};
 
-    gulp.watch(['src/**/*.js', 'js/**/*.js'], ['js', reload]);
-    gulp.watch('src/**/*.scss', ['sass', reload]);
-    gulp.watch('index.html', ['sass', reload]);
-    gulp.watch('./gulpfile.js', ['stop']);
-
+// ### JSHint
+// `gulp jshint` - Lints configuration JSON and project JS.
+gulp.task('jshint', function() {
+    return gulp.src([
+        'bower.json', 'gulpfile.js'
+    ].concat(path.src))
+        .pipe(jshint())
+        .pipe(jshint.reporter('jshint-stylish'))
+        .pipe(jshint.reporter('fail'));
 });
 
-gulp.task ('default', ['sass', 'sass:production', 'js', 'js:production']);
-gulp.task ('build', ['default']);
+// ### Clean
+// `gulp clean` - Deletes the build folder entirely.
+gulp.task('clean', require('del').bind(null, [path.dist]));
+
+// ### JS processing pipeline minify
+// `gulp scripts` - Runs JSHint then compiles, combines, and optimizes Bower JS
+// and project JS.
+gulp.task('scripts_min', ['jshint'], function() {
+
+    return gulp.src(path.src)
+        .pipe(ngAnnotate())
+        .pipe(concat(path.scriptFilename))
+        .pipe(uglify())
+        .pipe(rename({ suffix: '.min' }))
+        .pipe(gulp.dest(path.dist));
+});
+
+
+
+// ### Styles
+// `gulp styles` - Compiles, combines, and optimizes Bower CSS and project CSS.
+// By default this task will only log a warning if a precompiler error is
+// raised. If the `--production` flag is set: this task will fail outright.
+gulp.task('styles', function() {
+
+    return cssTasks(path.styles, path.dist, path.styleFilename + '.css', false);
+});
+gulp.task('styles_min', function() {
+
+    return cssTasks(path.styles, path.dist, path.styleFilename + '.css', true);
+});
+
+
+// ### JS processing pipeline
+// `gulp scripts` - Runs JSHint then compiles, combines, and optimizes Bower JS
+// and project JS.
+gulp.task('scripts', ['jshint'], function() {
+
+    // the same options as described above
+    var options = {
+        mangle: false,
+        compress: false,
+        output: { beautify: true }
+    };
+
+    return gulp.src(path.src)
+        .pipe(sourcemaps.init())
+        .pipe(ngAnnotate())
+        .pipe(concat(path.scriptFilename))
+        .pipe(uglify(options))
+        .pipe(sourcemaps.write('.', { sourceRoot: path.dist }))
+        .pipe(gulp.dest(path.dist));
+});
+
+
+// ### Build
+// `gulp build` - Run all the build tasks but don't clean up beforehand.
+// Generally you should be running `gulp` instead of `gulp build`.
+gulp.task('build', function(callback) {
+    runSequence(
+        'scripts',
+        'scripts_min',
+        'styles',
+        'styles_min',
+        callback);
+});
+
+// ### Gulp
+// `gulp` - Run a complete build. To compile for production run `gulp --production`.
+gulp.task('default', ['clean'], function() {
+    gulp.start('build');
+});

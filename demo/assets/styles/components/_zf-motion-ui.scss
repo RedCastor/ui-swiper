@@ -1,0 +1,49 @@
+.tooltip {
+  @include mui-fade(
+          $state: in,
+          $duration: 0.25s,
+          $delay: 0s
+  );
+}
+
+.tooltip {
+  @include mui-fade(
+          $state: out,
+          $from: 1,
+          $to: 0,
+          $duration: 0.25s,
+          $delay: 0s
+  );
+}
+
+.reveal-overlay {
+  @include mui-fade($state: in);
+}
+
+.reveal-overlay {
+  @include mui-fade(
+          $state: out,
+          $from: 1,
+          $to: 0
+  );
+}
+
+.reveal {
+  @include mui-slide(
+          $state: in, // Specify in or out
+          $direction: down, // Can be top, right, bottom, or left
+          $fade: true, // If true, the element fades simultaneously
+          $duration: 0.25s,
+          $timing: cubic-bezier,
+          $delay: 0s
+  );
+}
+
+.reveal {
+  @include mui-zoom(
+          $state: out,
+          $from: 1,
+          $to: 0,
+          $duration: 0.25s
+  );
+}

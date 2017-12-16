@@ -10,9 +10,12 @@ This module also works with webpack and es6.
 
 # Install
 
-`bower install angular-ui-swiper`
-**OR**
-`npm install --save-dev angular-ui-swiper`
+Install bower package fork:
+
+```bash
+bower install --save https://github.com/RedCastor/ui-swiper.git#2.4.0
+```
+
 
 # Add files
 
@@ -20,11 +23,7 @@ This module also works with webpack and es6.
 <link rel="stylesheet" href="bower_components/angular-ui-swiper/dist/angular-ui-swiper.css">
 <script src="bower_components/angular-ui-swiper/dist/angular-ui-swiper.js"></script>
 ```
-**OR**
-```
-<link rel="stylesheet" href="node_modules/angular-ui-swiper/dist/angular-ui-swiper.css">
-<script src="node_modules/angular-ui-swiper/dist/angular-ui-swiper.js"></script>
-```
+
 
 # Usage
 Add the module dependency to your project
@@ -32,17 +31,17 @@ Add the module dependency to your project
 
 Sample Usage :
 ```
-<swiper>
-  <slides>
-    <slide>Slide1</slide>
-    <slide>Slide2</slide>
-  </slides>
-  <prev></prev>
-  <next></next>
-  <pagination></pagination>
-</swiper>
+<ui-swiper>
+  <ui-swiper-slides>
+    <ui-swiper-slide>Slide1</ui-swiper-slide>
+    <ui-swiper-slide>Slide2</ui-swiper-slide>
+  </ui-swiper-slides>
+  <ui-swiper-prev></ui-swiper-prev>
+  <ui-swiper-next></ui-swiper-next>
+  <ui-swiper-pagination></ui-swiper-pagination>
+</ui-swiper-swiper>
 ```
 See here you added a swiper with pagination and directional buttons.
 Within the slide tag you can put **whatever html you want to put in there!**
 
-For more examples you can look at the [demo page](http://nebulr.github.io/ui-swiper).
+For more examples you can look at the [demo page](http://redcastor.github.io/ui-swiper/demo).

@@ -1,8 +1,9 @@
 {
   "name": "angular-ui-swiper",
-  "version": "2.3.6",
+  "version": "2.4.0",
   "authors": [
-    "James Meyer <james@swiftgrid.io>"
+    "James Meyer <james@swiftgrid.io>",
+    "Auban le Grelle <auban@viamonkey.com>"
   ],
   "description": "Most modern mobile touch slider for angular js",
   "main": [
@@ -19,7 +20,7 @@
     "angularjs"
   ],
   "license": "MIT",
-  "homepage": "",
+  "homepage": "https://github.com/RedCastor/ui-swiper",
   "ignore": [
     "**/.*",
     "node_modules",

@@ -1,0 +1,95 @@
+//
+// Global
+// --------------------------------------------------
+.loading * {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+//== Title
+h2, h4 {
+  color: $header-bg-color;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+//== Code
+code {
+  font-size: 0.8em;
+  padding-top: 0.35em;
+  padding-bottom: 0.35em;
+  border: none;
+}
+pre {
+  background-color: $code-background;
+  padding: 0.35em;
+}
+
+
+//== Helper
+//** Position
+.fixed    { position: fixed; }
+.relative { position: relative; }
+.absolute { position: absolute; }
+.static   { position: static; }
+
+//** Padding
+.no-padding {
+  padding: 0;
+}
+.no-padding-horizontal {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+.no-padding-vertical {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+//** Spacer verticale
+.voffset  {
+  margin-top: 2px;
+}
+.voffset1 {
+  margin-top: 5px;
+}
+.voffset2 {
+  margin-top: 10px;
+}
+.voffset3 {
+  margin-top: 15px;
+}
+.voffset4 {
+  margin-top: 30px;
+}
+.voffset5 {
+  margin-top: 40px;
+}
+.voffset6 {
+  margin-top: 60px;
+}
+.voffset7 {
+  margin-top: 80px;
+}
+.voffset8 {
+  margin-top: 100px;
+}
+.voffset9 {
+  margin-top: 150px;
+}
+
+//Wrap Content
+.wrap.wrap-main {
+  //Main header
+  .main-header {
+
+  }
+
+  // Main content
+  .main {
+
+  }
+}
+
+
+
