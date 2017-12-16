@@ -90,7 +90,6 @@
                 background: #eee;
                 width: 100%;
                 margin: 0 auto;
-                height: 340px;
                 padding: 20px;
             }
             .swiper-container {
@@ -300,15 +299,17 @@ $scope.instance.slideTo(index, 300);
                         <ui-swiper-next></ui-swiper-next>
                         <ui-swiper-pagination></ui-swiper-pagination>
                     </ui-swiper>
-                    <button ng-click="setSlide(0);">Go to Slide 1</button>
-                    <button ng-click="setSlide(1);">Go to Slide 2</button>
-                    <button ng-click="setSlide(2);">Go to Slide 3</button>
-                    <button ng-click="setSlide(3);">Go to Slide 4</button>
-                    <button ng-click="setSlide(4);">Go to Slide 5</button>
-                    <button ng-click="setSlide(5);">Go to Slide 6</button>
-                    <button ng-click="setSlide(6);">Go to Slide 7</button>
-                    <button ng-click="setSlide(7);">Go to Slide 8</button>
-                    <button ng-click="setSlide(8);">Go to Slide 9</button>
+                    <ul class="menu align-center">
+                        <li><button class="button primary" data-ng-click="setSlide(0);">Go to Slide 1</button></li>
+                        <li><button class="button primary" data-ng-click="setSlide(1);">Go to Slide 2</button></li>
+                        <li><button class="button primary" data-ng-click="setSlide(2);">Go to Slide 3</button></li>
+                        <li><button class="button primary" data-ng-click="setSlide(3);">Go to Slide 4</button></li>
+                        <li><button class="button primary" data-ng-click="setSlide(4);">Go to Slide 5</button></li>
+                        <li><button class="button primary" data-ng-click="setSlide(5);">Go to Slide 6</button></li>
+                        <li><button class="button primary" data-ng-click="setSlide(6);">Go to Slide 7</button></li>
+                        <li><button class="button primary" data-ng-click="setSlide(7);">Go to Slide 8</button></li>
+                        <li><button class="button primary" data-ng-click="setSlide(8);">Go to Slide 9</button></li>
+                    </ul>
                 </div>
             </div>
         </section>
