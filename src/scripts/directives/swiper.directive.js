@@ -4,7 +4,7 @@
   angular.module ( 'ui.swiper' ).directive( 'uiSwiper', SwiperDirective );
 
   /* @ngInject */
-  function SwiperDirective (Swiper, $rootScope, $timeout) {
+  function SwiperDirective (Swiper, $timeout) {
     return {
       restrict : 'EA',
       transclude : true,
@@ -72,12 +72,12 @@
           }
 
           $scope.instance = new Swiper ('.' + $scope.uuid, $attribute);
-        });
+        }, 0, false);
 
-        $rootScope.$on($scope.uuid, function() {
+        $scope.$on($scope.uuid, function() {
           $timeout(function() {
             $scope.instance = new Swiper ('.' + $scope.uuid, $attribute);
-          });
+          }, 0, false);
         });
 
       }

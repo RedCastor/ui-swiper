@@ -4,7 +4,7 @@
   angular.module ('ui.swiper').directive ('uiSwiperSlide', SlideDirective);
 
   /* @ngInject */
-  function SlideDirective ($rootScope) {
+  function SlideDirective () {
     return {
       restrict : 'E',
       replace : true,
@@ -13,10 +13,10 @@
       require : '^uiSwiperSlides',
       priority : 3,
       link : function (scope, element, attrs) {
-        var eventId = scope.$parent.$parent.uuid;
+        var eventId = scope.$parent.$parent.$parent.uuid;
         scope.$watch('$last', function (value) {
           if (value)  {
-            $rootScope.$broadcast(eventId);
+            scope.$emit(eventId);
           }
         });
       }

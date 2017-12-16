@@ -51,9 +51,8 @@
 
 (function(angular) {
     "use strict";
-    SlideDirective.$inject = [ "$rootScope" ];
     angular.module("ui.swiper").directive("uiSwiperSlide", SlideDirective);
-    function SlideDirective($rootScope) {
+    function SlideDirective() {
         return {
             restrict: "E",
             replace: true,
@@ -62,10 +61,10 @@
             require: "^uiSwiperSlides",
             priority: 3,
             link: function(scope, element, attrs) {
-                var eventId = scope.$parent.$parent.uuid;
+                var eventId = scope.$parent.$parent.$parent.uuid;
                 scope.$watch("$last", function(value) {
                     if (value) {
-                        $rootScope.$broadcast(eventId);
+                        scope.$emit(eventId);
                     }
                 });
             }
@@ -91,9 +90,9 @@
 
 (function(angular) {
     "use strict";
-    SwiperDirective.$inject = [ "Swiper", "$rootScope", "$timeout" ];
+    SwiperDirective.$inject = [ "Swiper", "$timeout" ];
     angular.module("ui.swiper").directive("uiSwiper", SwiperDirective);
-    function SwiperDirective(Swiper, $rootScope, $timeout) {
+    function SwiperDirective(Swiper, $timeout) {
         return {
             restrict: "EA",
             transclude: true,
@@ -154,11 +153,11 @@
                         $attribute.speed = parseInt($attribute.speed, 10);
                     }
                     $scope.instance = new Swiper("." + $scope.uuid, $attribute);
-                });
-                $rootScope.$on($scope.uuid, function() {
+                }, 0, false);
+                $scope.$on($scope.uuid, function() {
                     $timeout(function() {
                         $scope.instance = new Swiper("." + $scope.uuid, $attribute);
-                    });
+                    }, 0, false);
                 });
             }
         };
