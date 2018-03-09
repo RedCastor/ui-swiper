@@ -10,7 +10,6 @@
         return {
             restrict: "AE",
             transclude: true,
-            replace: true,
             require: "^uiSwiper",
             template: '<div class="swiper-button-next" ng-transclude></div>',
             priority: 2
@@ -25,7 +24,6 @@
         return {
             restrict: "AE",
             transclude: true,
-            replace: true,
             require: "^uiSwiper",
             template: '<div class="swiper-pagination" ng-transclude></div>',
             priority: 2
@@ -40,7 +38,6 @@
         return {
             restrict: "AE",
             transclude: true,
-            replace: true,
             require: "^uiSwiper",
             template: '<div class="swiper-button-prev" ng-transclude></div>',
             priority: 2,
