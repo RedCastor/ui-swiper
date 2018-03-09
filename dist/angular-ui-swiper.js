@@ -747,9 +747,9 @@
 
 (function(angular) {
     "use strict";
-    SwiperFactory.$inject = [ "Dom7" ];
+    SwiperFactory.$inject = [ "Dom7", "$parse" ];
     angular.module("ui.swiper").factory("Swiper", SwiperFactory);
-    function SwiperFactory(Dom7) {
+    function SwiperFactory(Dom7, $parse) {
         var $;
         var Swiper = function(container, params) {
             if (!(this instanceof Swiper)) return new Swiper(container, params);
@@ -934,7 +934,9 @@
                 var breakpoint = false;
                 var points = [], point;
                 if (typeof s.params.breakpoints === "string") {
-                    s.params.breakpoints = JSON.parse(s.params.breakpoints);
+                    console.log(s.params.breakpoints);
+                    s.params.breakpoints = $parse(s.params.breakpoints)();
+                    console.log(s.params.breakpoints);
                 }
                 for (point in s.params.breakpoints) {
                     if (s.params.breakpoints.hasOwnProperty(point)) {

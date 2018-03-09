@@ -33,7 +33,7 @@
                 <h3>Angular Directive Fork of angular-ui-swiper.</h3>
                 <a class="button large hollow default" href="https://github.com/RedCastor/ui-swiper"><i class="fa fa-github"></i>&nbsp;&nbsp;View on GitHub</a>
                 <a class="button large hollow default" href="https://github.com/RedCastor/ui-swiper/releases"><i class="fa fa-download"></i>&nbsp;&nbsp;Download</a>
-                <h5 class="version"><small>Currently v2.4.1</small></h5>
+                <h5 class="version"><small>Currently v2.4.2</small></h5>
             </div>
         </div>
     </div>
@@ -121,7 +121,7 @@
                     <h4>Default Setup</h4>
                 </header>
                 <div class="swipe">
-                    <ui-swiper>
+                    <ui-swiper breakpoints="{'0':{'slidesPerView':1},'480':{'slidesPerView':2},'768':{'slidesPerView':3},'1025':{'slidesPerView':4}}">
                         <ui-swiper-slides>
                             <ui-swiper-slide>Slide 1</ui-swiper-slide>
                             <ui-swiper-slide>Slide 2</ui-swiper-slide>
@@ -283,7 +283,7 @@ $scope.instance.slideTo(index, 300);
                     </code></pre>
                 </header>
                 <div class="swipe">
-                    <ui-swiper instance="instance">
+                    <ui-swiper instance="instance" >
                         <ui-swiper-slides>
                             <ui-swiper-slide>Slide 1</ui-swiper-slide>
                             <ui-swiper-slide>Slide 2</ui-swiper-slide>
