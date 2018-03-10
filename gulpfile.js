@@ -13,6 +13,7 @@ var lazypipe     = require('lazypipe');
 var less         = require('gulp-less');
 var merge        = require('merge-stream');
 var cssNano      = require('gulp-cssnano');
+var svgo         = require('gulp-svgo');
 var plumber      = require('gulp-plumber');
 var rev          = require('gulp-rev');
 var sass         = require('gulp-sass');
@@ -67,6 +68,7 @@ var cssTasks = function(src, dest, filename, min) {
             errLogToConsole: true
         }))
         .pipe(concat(filename))
+        .pipe(svgo())
         .pipe(autoprefixer( {
             browsers: [
                 'last 2 versions',
