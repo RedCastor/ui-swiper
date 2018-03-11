@@ -934,9 +934,7 @@
                 var breakpoint = false;
                 var points = [], point;
                 if (typeof s.params.breakpoints === "string") {
-                    console.log(s.params.breakpoints);
                     s.params.breakpoints = $parse(s.params.breakpoints)();
-                    console.log(s.params.breakpoints);
                 }
                 for (point in s.params.breakpoints) {
                     if (s.params.breakpoints.hasOwnProperty(point)) {
