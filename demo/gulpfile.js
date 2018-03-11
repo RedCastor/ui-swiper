@@ -1,6 +1,6 @@
 /**
- * Demo rc-gallery
- * Version: 1.0.3
+ * Demo ui.swiper
+ * Version: 2.4.3
  */
 
 // ## Globals

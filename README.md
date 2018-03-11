@@ -13,7 +13,7 @@ This module also works with webpack and es6.
 Install bower package fork:
 
 ```bash
-bower install --save https://github.com/RedCastor/ui-swiper.git#2.4.2-redcastor
+bower install --save https://github.com/RedCastor/ui-swiper.git#2.4.3-redcastor
 ```
 
 

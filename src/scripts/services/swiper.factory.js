@@ -273,11 +273,8 @@
 
               // If params are passed as a string, parse to a JSON object
               if( typeof(s.params.breakpoints) === 'string' ){
-                console.log(s.params.breakpoints);
 
                 s.params.breakpoints = $parse(s.params.breakpoints)();
-
-                console.log(s.params.breakpoints);
               }
 
               for ( point in s.params.breakpoints ) {

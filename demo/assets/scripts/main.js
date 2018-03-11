@@ -6,6 +6,13 @@
 
     app.controller ('mainCtrl', ['$scope', '$timeout', function ($scope, $timeout) {
 
+        $scope.breakpoints = {
+            '0':{'slidesPerView':1},
+            '480':{'slidesPerView':2},
+            '768':{'slidesPerView':3},
+            '1025':{'slidesPerView':4}
+        };
+
         $scope.onTransitionStart = function (swiper) {
             alert ("The current index is : " + swiper.activeIndex);
         };
